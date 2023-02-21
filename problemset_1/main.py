@@ -2,24 +2,26 @@
 # if each individual is at least 21 years old.
 from date import Date
 
-# Assignment 0
 def main():
+    # Assignment 0
     # Date before a person must have been born to be 21 or older.
     bornBefore = Date(10, 1, 1999)
-    # Extract birth dates from the user and determine if 21 or older.
+    # Extract the date
     date = promptAndExtractDate()
-    while date is  not None:
+    while date is not None:
+        # Check if at least 21 years old
         if date <= bornBefore:
             print("Is at least 21 years old: ", date)
         else:
             print("Sorry, not of age: ", date)
-        date = promprAndExtractDate()
+
+        date = promptAndExtractDate()
 
 # Prompts for and extracts the Gregorian date components.
-# Returns a Date object or None when the user has finshed entering dates
+# Returns a Date object or None when the user has finished entering dates
 def promptAndExtractDate():
     print("Enter a birth date.")
-    month = int(input("month (0 to quit)"))
+    month = int(input("month (0 to quit): "))
     if month == 0:
         return None
     day = int(input("day: "))
