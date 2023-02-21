@@ -4,14 +4,14 @@ class Date:
     # Creates an object of instance for the specified Gregorian date.
     def __init__(self, month, day, year):
         self._julianDay = 0
-        assert self._isValidGregorian(month, day, year), "Invalid Gregorian date."
+        assert self.isValidGregorian(month, day, year), "Invalid Gregorian date."
         # calculate Julian Day
         tmp = 0
         if month < 3:
             tmp = -1
         self._julianDay = day - 32075 + \
             1461 * (year + 4800 + tmp) // 4 + \
-            367 * month - 2 - tmp * 12 // 12 - \
+            367 * (month - 2 - tmp * 12) // 12 - \
             3 * ((year + 4900 + tmp) // 100) // 4
 
     # Extracts the appropriate Gregorian date component.
@@ -22,7 +22,7 @@ class Date:
         return (self._toGregorian())[1] #returning D from (m, D, y)
 
     def year(self):
-        return (self.toGregorian())[2] # returning Y from (m, d, Y)
+        return (self._toGregorian())[2] # returning Y from (m, d, Y)
 
     # Returns day of the week as an int between 0 (Mon) and 6 (Sun).
     def dayOfWeek(self):
@@ -84,12 +84,12 @@ class Date:
     # Advances the date by the given number of days. The date is incremented if days is positive
     # and decremented if days are negative . The dare us capped to November 24, 4714 BC, if necessary.
     def advanceBy(self, days):
-        self._julianDay + days
+        self._julianDay += days
         if self._julianDay < 0:
             self._julianDay = 0
 
     # Return whether the three components of a date are valid (month, day, year)
-    def _isValidGregorian(self, month, day, year):
+    def isValidGregorian(self, month, day, year):
         if not (isinstance(month, int) and isinstance(day, int) and isinstance(year, int)):
             return False
         if day <= 0 or year <= -4713 or month < 1 or month > 12:
