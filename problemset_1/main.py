@@ -14,6 +14,9 @@ def main():
         # Assignment 1
         elif assignment == 1:
             test1()
+        # Assignment 2
+        elif assignment == 2:
+            test2()
         assignment = asksAssignment()
 
 # Tests functionalities of assignment 0
@@ -44,6 +47,13 @@ def test1():
     days = int(input("Add a number of days to the second date: "))
     date_2.advanceBy(days)
     print(f"Result: {date_2.month()}.{date_2.day()}.{date_2.year()}")
+
+# Tests functionalities of assignment 2
+def test2():
+    print('Insert a date: ')
+    date = promptAndExtractDate()
+    print('Day of the week: ', date.dayOfWeekName())
+    print('Day of the year: ', date.dayOfYear())
 
 # Prompts for and extracts the Gregorian date components.
 # Returns a Date object or None when the user has finished entering dates

@@ -103,3 +103,18 @@ class Date:
             return day <= 28
         # 31 days months
         return day <= 31
+
+    # Assignment 2
+    # Returns a string containing the name of the day
+    def dayOfWeekName(self):
+        daysName = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+        day = self.dayOfWeek()
+        return daysName[day]
+
+    # Returns an integer indicating the day of the year.
+    def dayOfYear(self):
+        firstOfYear = Date(1, 1, self.year())
+        return firstOfYear.numDays(self) + 1
+
+    # Determines if the date is a weekday
+    #def isWeekday(self):
