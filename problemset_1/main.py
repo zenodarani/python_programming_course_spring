@@ -10,7 +10,7 @@ def main():
     print('Second date: ', date2.asGregorian())
 
     # Assignment 1
-    print('----Assignment 1----')
+    print('\n----Assignment 1----')
     print(f'Month of {date1.asGregorian()}: {date1.monthName()}')
     print(f'Is year of {date1.asGregorian()} a leap year? {date1.isLeapYear()}')
     print(f'Days between {date1.asGregorian()} and {date2.asGregorian()}: {date1.numDays(date2)}')
@@ -20,7 +20,12 @@ def main():
     print(f'{oldDate2.asGregorian()} + {days} = {date2.asGregorian()}')
 
     # Assignment 2
-
+    print('\n----Assignment 2----')
+    print(f'Day of the week of {date1.asGregorian()}: {date1.dayOfWeekName()}')
+    print(f'Day of the year of {date1.asGregorian()}: {date1.dayOfYear()}')
+    print(f'Is {date1.asGregorian()} a weekday? {date1.isWeekday()}')
+    print(f'Is {date1.asGregorian()} an equinox? {date1.isEquinox()}')
+    print(f'Is {date1.asGregorian()} a solstice? {date1.isSolstice()}')
 
 
 # Ask for a date and returns it.

@@ -124,7 +124,20 @@ class Date:
         return firstOfYear.numDays(self) + 1
 
     # Determines if the date is a weekday
-    #def isWeekday(self):
+    def isWeekday(self):
+        return self.dayOfWeek() <= 4
+
+    # Determines if the date is a spring or autumn equinox
+    def isEquinox(self):
+        springEquinox = Date(3, 20, self.year())
+        autumnEquinox = Date(9, 22, self.year())
+        return self == springEquinox or self == autumnEquinox
+
+    # Determines if the date is a summer or winter solstice
+    def isSolstice(self):
+        summerSolstice = Date(6, 21, self.year())
+        winterSolstice = Date(12, 21, self.year())
+        return self == summerSolstice or self == winterSolstice
 
     # Returns a gregorian string representation of this date
     def asGregorian(self, divchar='/'):
