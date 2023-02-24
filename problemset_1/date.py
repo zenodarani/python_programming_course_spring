@@ -4,7 +4,7 @@ class Date:
     # Creates an object of instance for the specified Gregorian date.
     def __init__(self, month, day, year):
         self._julianDay = 0
-        assert self.isValidGregorian(month, day, year), "Invalid Gregorian date."
+        assert self._isValidGregorian(month, day, year), "Invalid Gregorian date."
         # calculate Julian Day
         tmp = 0
         if month < 3:
@@ -70,6 +70,10 @@ class Date:
     # Determines if this date falls in a leap year and returns the appropriate boolean value.
     def isLeapYear(self):
         year = self.year()
+        return self._isLeapYear(year)
+
+    # Determines if a date falls in a leap year and returns the appropriate boolean value.
+    def _isLeapYear(self, year):
         if year % 4 == 0:
             if year % 100 == 0:
                 return year % 400 == 0
@@ -89,7 +93,7 @@ class Date:
             self._julianDay = 0
 
     # Return whether the three components of a date are valid (month, day, year)
-    def isValidGregorian(self, month, day, year):
+    def _isValidGregorian(self, month, day, year):
         if not (isinstance(month, int) and isinstance(day, int) and isinstance(year, int)):
             return False
         if day <= 0 or year <= -4713 or month < 1 or month > 12:
@@ -98,9 +102,12 @@ class Date:
         # 30 days months
         if month in [4, 6, 9, 11]:
             return day <= 30
-        # 28 days month
+        # 28/29 days month
         if month == 2:
-            return day <= 28
+            if self._isLeapYear(year):
+                return day <= 29
+            else:
+                return day <= 28
         # 31 days months
         return day <= 31
 
@@ -118,3 +125,9 @@ class Date:
 
     # Determines if the date is a weekday
     #def isWeekday(self):
+
+    # Returns a gregorian string representation of this date
+    def asGregorian(self, divchar='/'):
+        return f'{self.month()}{divchar}{self.day()}{divchar}{self.year()}'
+
+
