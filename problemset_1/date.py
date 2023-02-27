@@ -1,8 +1,18 @@
+from datetime import datetime
+
+
 class Date:
 
     # Assignment 0
     # Creates an object of instance for the specified Gregorian date.
-    def __init__(self, month, day, year):
+    def __init__(self, month=None, day=None, year=None):
+        # Assignment 4
+        if month == None:
+            month = datetime.today().month
+        if day == None:
+            day = datetime.today().day
+        if year == None:
+            year = datetime.today().year
         self._julianDay = 0
         assert self._isValidGregorian(month, day, year), "Invalid Gregorian date."
         # calculate Julian Day

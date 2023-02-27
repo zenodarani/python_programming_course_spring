@@ -4,8 +4,8 @@ from date import Date
 from copy import deepcopy
 
 def main():
-    date1 = inputDate('Insert a date (month.day.year): ')
-    date2 = inputDate('Insert a second date (month.day.year): ')
+    date1 = inputDate('Insert a date (month.day.year or "enter" for today): ')
+    date2 = inputDate('Insert a second date (month.day.year or "enter" for today): ')
     print('First date: ', date1.asGregorian())
     print('Second date: ', date2.asGregorian())
 
@@ -31,9 +31,27 @@ def main():
     print('\n----Assignment 3----\n')
     printCalendar(date1)
 
+    # Assignment 4
+    print('\n----Assignment 4----')
+    params = {}
+    month = input('Insert a month (press "enter" to use current month): ')
+    if month != '':
+        params['month'] = int(month)
+    day = input('Insert a day (press "enter" to use current day): ')
+    if day != '':
+        params['day'] = int(day)
+    year = input('Insert a year (press "enter" to use current year): ')
+    if year != '':
+        params['year'] = int(year)
+    date3 = Date(**params)
+    print(date3.asGregorian())
+
+
 # Ask for a date and returns it.
 def inputDate(msg):
     strDate = input(msg)
+    if strDate == '':
+        return Date()
     month, day, year = strDate.split('.')
     month = int(month)
     day = int(day)
@@ -65,6 +83,7 @@ def printCalendar(date):
         else:
             print('  ', end='')
         currentDay.advanceBy(1)
+    print()
 
 
 
