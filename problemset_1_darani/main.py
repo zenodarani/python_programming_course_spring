@@ -1,8 +1,7 @@
-# Extracts a collection of birth dates from the user and determines
-# if each individual is at least 21 years old.
 from date import Date
 from copy import deepcopy
 
+# Tests all the functionalities of the class Date
 def main():
     date1 = inputDate('Insert a date (month.day.year or "enter" for today): ')
     date2 = inputDate('Insert a second date (month.day.year or "enter" for today): ')
@@ -58,6 +57,7 @@ def inputDate(msg):
     year = int(year)
     return Date(month, day, year)
 
+
 # Given a date it prints the month calendar of that date
 def printCalendar(date):
     # print month and year centered
@@ -84,10 +84,6 @@ def printCalendar(date):
             print('  ', end='')
         currentDay.advanceBy(1)
     print()
-
-
-
-
 
 
 # Call the main routine.
