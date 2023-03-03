@@ -35,9 +35,7 @@ class Matrix :
 
     # Creates and returns a new matrix that results from matrix addition.
     def __add__( self, rhsMatrix ):
-        assert rhsMatrix.numRows() == self.numRows() and \
-        rhsMatrix.numCols() == self.numCols(), \
-        "Matrix sizes not compatible for the add operation."
+        assert Matrix._isSameSize(self, rhsMatrix), "Matrix sizes not compatible for the add operation."
         # Create the new matrix.
         newMatrix = Matrix( self.numRows(), self.numCols() )
         # Add the corresponding elements in the two matrices.
@@ -48,8 +46,7 @@ class Matrix :
 
     # Creates and returns a new matrix that results from matrix subtraction.
     def __sub__( self, rhsMatrix ):
-        assert rhsMatrix.numRows() == self.numRows() and rhsMatrix.numCols() == self.numCols() \
-        "Matrix sizes not compatible for the add operation."
+        assert Matrix._isSameSize(self, rhsMatrix), "Matrix sizes not compatible for the sub operation."
         # Create the new matrix.
         newMatrix = Matrix(self.numRows(), self.numCols())
         # Subtract the corresponding elements in the two matrices.
@@ -59,5 +56,26 @@ class Matrix :
         return newMatrix
 
     # Creates and returns a new matrix resulting from matrix multiplication.
-    #def __mul__( self, rhsMatrix ):
-    #......
+    def __mul__(self, rhsMatrix):
+        assert self.numCols() == rhsMatrix.numRows() and self.numRows() == rhsMatrix.numCols(), \
+            "Matrix sizes not compatible for the mul operation."
+        # Create the new matrix
+        newMatrix = Matrix(self.numRows(), rhsMatrix.numCols())
+        # Multiplication of rows with columns
+        for r in range(newMatrix.numRows()):
+            for c in range(newMatrix.numCols()):
+                sum = 0
+                for i in range(newMatrix.numRows()):
+                    # multiplication of #n element of row with #n element of column
+                    sum += self[r, i] * rhsMatrix[c, i]
+                newMatrix[r, c] = sum
+        return newMatrix
+
+
+    # Checks if two matrices are of the same size
+    @staticmethod
+    def _isSameSize(firstMatrix, secondMatrix):
+        return firstMatrix.numRows() == secondMatrix.numRows() and \
+            firstMatrix.numCols() == secondMatrix.numCols()
+
+
