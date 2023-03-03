@@ -47,8 +47,16 @@ class Matrix :
         return newMatrix
 
     # Creates and returns a new matrix that results from matrix subtraction.
-    #def __sub__( self, rhsMatrix ):
-    #......
+    def __sub__( self, rhsMatrix ):
+        assert rhsMatrix.numRows() == self.numRows() and rhsMatrix.numCols() == self.numCols() \
+        "Matrix sizes not compatible for the add operation."
+        # Create the new matrix.
+        newMatrix = Matrix(self.numRows(), self.numCols())
+        # Subtract the corresponding elements in the two matrices.
+        for r in range(self.numRows()):
+            for c in range(self.numCols()):
+                newMatrix[r, c] = self[r, c] - rhsMatrix[r, c]
+        return newMatrix
 
     # Creates and returns a new matrix resulting from matrix multiplication.
     #def __mul__( self, rhsMatrix ):
