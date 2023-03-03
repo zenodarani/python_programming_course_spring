@@ -71,6 +71,14 @@ class Matrix :
                 newMatrix[r, c] = sum
         return newMatrix
 
+    # Returns a new matrix that is the transpose of this matrix
+    def transpose(self):
+        newMatrix = Matrix(self.numRows(), self.numCols())
+        # Transposition
+        for r in range(self.numRows()):
+            for c in range(self.numCols()):
+                newMatrix[c ,r] = self[r, c]
+        return newMatrix
 
     # Checks if two matrices are of the same size
     @staticmethod
