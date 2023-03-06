@@ -45,5 +45,14 @@ class LifeGrid:
         self._grid[row, col] = LifeGrid.LIVE_CELL
 
     # Returns the number of live neighbors for the given cell.
-    # def numLiveNeighbors( self, row, col ):
-    #     ......
+    def numLiveNeighbors( self, row, col):
+        startRow = row - 1 if row - 1 >= 0 else row
+        startCol = col - 1 if col - 1 >= 0 else col
+        endRow = row + 1 if row + 1 < self.numRows() else row
+        endCol = col + 1 if col + 1 < self.numCols() else col
+        numAliveCells = 0
+        for i in range(startRow, endRow + 1):
+            for j in range(startCol, endCol + 1):
+                if i != row and j != col and self.isLiveCell(i, j):
+                    numAliveCells += 1
+        return numAliveCells
