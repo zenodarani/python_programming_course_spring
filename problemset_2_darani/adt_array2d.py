@@ -22,8 +22,8 @@ class Array2D:
 
     # Clears the array by setting every element to the given value.
     def clear(self, value):
-        for row in range(self.numRows()):
-            row.clear(value)
+        for i in range(self.numRows()):
+            self._theRows[i].clear(value)
 
     # Gets the contents of the element at position [i, j]
     def __getitem__(self, ndxTuple):
