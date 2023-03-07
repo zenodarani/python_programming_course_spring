@@ -1,7 +1,8 @@
 # Implementation of the Matrix ADT using a 2-D array.
-from adt_array2d import Array2D
+from adt_array import Array2D
 
-class Matrix :
+
+class Matrix:
     # Creates a matrix of size numRows x numCols initialized to 0.
     def __init__( self, numRows, numCols ):
         self._theGrid = Array2D( numRows, numCols )

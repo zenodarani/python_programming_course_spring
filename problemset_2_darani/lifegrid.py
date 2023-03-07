@@ -1,5 +1,6 @@
 # Implements the LifeGrid ADT for use with the game of Life.
-from adt_array2d import Array2D
+import copy
+from adt_array import Array2D
 
 
 class LifeGrid:
@@ -56,3 +57,18 @@ class LifeGrid:
                 if i != row and j != col and self.isLiveCell(i, j):
                     numAliveCells += 1
         return numAliveCells
+
+    # Evolve the game to a given number of generations
+    def evolve(self, generations=1):
+        # Save the current grid status
+        currentGenLifeGrid = copy.deepcopy(self)
+        for gen in range(generations):
+            for row in range(currentGenLifeGrid.numRows()):
+                for col in range(currentGenLifeGrid.numCols()):
+                    numLive = currentGenLifeGrid.numLiveNeighbors(row, col)
+                    if currentGenLifeGrid.isLiveCell(row, col) and (numLive >= 4 or numLive <= 1):
+                        # Change the gridstatus of this gridlife
+                        self.clearCell(row, col)
+                    if not currentGenLifeGrid.isLiveCell(row, col) and numLive == 3:
+                        # Change the gridstatus of this gridlife
+                        self.setCell(row, col)
