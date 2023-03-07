@@ -87,4 +87,40 @@ class Matrix:
         return firstMatrix.numRows() == secondMatrix.numRows() and \
             firstMatrix.numCols() == secondMatrix.numCols()
 
+    def __str__(self):
+        mtxStr = ''
+        for i in range(self.numRows()):
+            for j in range(self.numCols()):
+                mtxStr += f'{self[i, j]} '
+            mtxStr += '\n'
+        return mtxStr
 
+
+def main():
+    dataMtx1 = [[1, 2, 3],
+                [1, 2, 3],
+                [1, 2, 3]]
+    dataMtx2 = [[1, 1, 1],
+                [1, 1, 1],
+                [1, 1, 1]]
+    mtx1 = Matrix(3, 3)
+    mtx2 = Matrix(3, 3)
+    for i in range(mtx1.numRows()):
+        for j in range(mtx1.numCols()):
+            mtx1[i, j] = dataMtx1[i][j]
+    for i in range(mtx2.numRows()):
+        for j in range(mtx2.numCols()):
+            mtx2[i, j] = dataMtx2[i][j]
+    print('Matrix 1:')
+    print(mtx1)
+    print('Matrix 2:')
+    print(mtx2)
+    print('Subtraction:')
+    print(mtx1 - mtx2)
+    print('Multiplication:')
+    print(mtx1 * mtx2)
+    print('Transpose of mtx 1:')
+    print(mtx1.transpose())
+
+
+main()
