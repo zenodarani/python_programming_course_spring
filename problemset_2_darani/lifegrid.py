@@ -54,21 +54,94 @@ class LifeGrid:
         numAliveCells = 0
         for i in range(startRow, endRow + 1):
             for j in range(startCol, endCol + 1):
-                if i != row and j != col and self.isLiveCell(i, j):
+                if not(i == row and j == col) and self.isLiveCell(i, j):
                     numAliveCells += 1
         return numAliveCells
 
     # Evolve the game to a given number of generations
     def evolve(self, generations=1):
-        # Save the current grid status
-        currentGenLifeGrid = copy.deepcopy(self)
         for gen in range(generations):
-            for row in range(currentGenLifeGrid.numRows()):
-                for col in range(currentGenLifeGrid.numCols()):
-                    numLive = currentGenLifeGrid.numLiveNeighbors(row, col)
-                    if currentGenLifeGrid.isLiveCell(row, col) and (numLive >= 4 or numLive <= 1):
-                        # Change the gridstatus of this gridlife
-                        self.clearCell(row, col)
-                    if not currentGenLifeGrid.isLiveCell(row, col) and numLive == 3:
-                        # Change the gridstatus of this gridlife
-                        self.setCell(row, col)
+            nextLifeGrid = LifeGrid(self.numRows(), self.numCols())
+            for row in range(self.numRows()):
+                for col in range(self.numCols()):
+                    numLive = self.numLiveNeighbors(row, col)
+                    if (self.isLiveCell(row, col) and 2 <= numLive <= 3) or \
+                            (not self.isLiveCell(row, col) and numLive == 3):
+                        # Change the gridstatus of the next generation
+                        nextLifeGrid.setCell(row, col)
+            self._grid = nextLifeGrid._grid
+
+
+GRID_ROWS = 15
+GRID_COLS = 15
+DEFAULT_GENS = 9
+CONF_1 = [(5, 5), (4, 6), (3, 7)]
+CONF_2 = [(7, 7), (8, 8), (9, 9), (10, 10), (11, 11),
+          (11, 7), (10, 8), (9, 9), (8, 10), (7, 11)]
+CONF_3 = [(3, 3), (3, 4), (3, 5), (3, 6), (3, 7),
+          (4, 3), (4, 4), (4, 5), (4, 6), (4, 7),
+          (5, 3), (5, 4), (5, 5), (5, 6), (5, 7),
+          (6, 3), (6, 4), (6, 5), (6, 6), (6, 7),
+          (7, 3), (7, 4), (7, 5), (7, 6), (7, 7)]
+CONF_4 = [(1, 4), (2, 4), (3, 4), (4, 4), (5, 4),
+          (1, 6), (2, 6), (3, 6), (4, 6), (5, 6),
+          (5, 3), (5, 7)]
+CONF_5 = [(3, 8), (4, 8), (5, 8), (6, 8), (7, 8),
+          (5, 6), (5, 7), (5, 9), (5, 10)]
+CONF_6 = [(3, 3), (3, 4), (4, 4),
+          (3, 6), (3, 7), (4, 6),
+          (6, 4), (7, 4), (7, 3),
+          (6, 6), (7, 6), (7, 7)]
+CONF_7 = [(0, 0), (0, 1), (1, 0),
+          (1, 2), (3, 2),
+          (3, 4), (5, 4),
+          (5, 6), (7, 6),
+          (7, 8), (9, 8),
+          (9, 10), (11, 10),
+          (11, 12), (12, 11), (12, 12)]
+
+
+def draw(lifeGrid):
+    for i in range(lifeGrid.numRows()):
+        for j in range(lifeGrid.numCols()):
+            print('#', end=' ') if lifeGrid.isLiveCell(i, j) else print('.', end=' ')
+        print('')
+
+
+# Play the game of life
+def play(lifegrid, generations):
+    print('\nGeneration 1')
+    draw(lifegrid)
+    for i in range(generations):
+        lifegrid.evolve()
+        print(f'\nGeneration {i + 2}')
+        draw(lifegrid)
+
+
+def main():
+    grid = LifeGrid(GRID_ROWS, GRID_COLS)
+
+    print('--- CONF_1 ---')
+    grid.configure(CONF_1)
+    play(grid, DEFAULT_GENS)
+    print('\n--- CONF_2 ---')
+    grid.configure(CONF_2)
+    play(grid, DEFAULT_GENS)
+    print('\n--- CONF_3 ---')
+    grid.configure(CONF_3)
+    play(grid, DEFAULT_GENS)
+    print('\n--- CONF_4 ---')
+    grid.configure(CONF_4)
+    play(grid, DEFAULT_GENS)
+    print('\n--- CONF_5 ---')
+    grid.configure(CONF_5)
+    play(grid, DEFAULT_GENS)
+    print('\n--- CONF_6 ---')
+    grid.configure(CONF_6)
+    play(grid, DEFAULT_GENS)
+    print('\n--- CONF_7 ---')
+    grid.configure(CONF_7)
+    play(grid, DEFAULT_GENS)
+
+
+main()
