@@ -59,7 +59,7 @@ if __name__ == '__main__':
     print(setA)
     # endregion
 
-    # region Assignment 1.4
+    # region Assignment 1.5
     setA = getRandomSet(5, (1, 10))
     setB = getRandomSet(2, (1, 10))
     print('\nAssignment 1.4')
@@ -70,4 +70,13 @@ if __name__ == '__main__':
     print(f'A - B = {setA - setB} (difference)')
     print(f'A < B = {setA < setB} (is subset of)')
     print(f'B < A = {setB < setA} (is subset of)')
+    # endregion
+
+    # region Assignment 1.6
+    setA = Set(2, 0, 1, 1)
+    print('\nAssignment 1.6')
+    print(f'Set A -> {setA}')
+    for e in setA:
+        print(f'{e} ', end='')
+    print('')
     # endregion

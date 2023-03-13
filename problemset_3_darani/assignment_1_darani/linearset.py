@@ -68,8 +68,8 @@ class Set:
         return differenceSet
 
     # Returns an iterator for traversing the list of items.
-    # def __iter__(self):
-    #     return _SetIterator(self._theElements)
+    def __iter__(self):
+        return _SetIterator(self._theElements)
 
     # Returns a sting representation of the Set
     def __str__(self):
@@ -98,3 +98,21 @@ class Set:
     # States if this set is a subset of a given setB
     def __lt__(self, setB):
         return self.isSubsetOf(setB)
+
+
+# Iterator class for Set
+class _SetIterator:
+    def __init__(self, theElements):
+        self._theElements = theElements
+        self._curIndex = 0
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        if self._curIndex < len(self._theElements):
+            entry = self._theElements[self._curIndex]
+            self._curIndex += 1
+            return entry
+        else:
+            raise StopIteration
