@@ -38,8 +38,8 @@ class Map:
         self._entryList.pop(ndx)
 
     # Returns an iterator for traversing the keys in the map.
-    #def __iter__(self):
-    #    return _MapIterator(self._entryList)
+    def __iter__(self):
+        return _MapIterator(self._entryList)
 
     # Helper method used to find the index position of a category. If the
     # key is not found, None is returned.
@@ -49,8 +49,31 @@ class Map:
                 return i
         return None
 
+    # Returns an array containing all the keys stored in the map
+    def keyArray(self):
+        return [entry.key for entry in self]
+
+
 # Storage class
 class _MapEntry:
     def __init__(self, key, value):
         self.key = key
         self.value = value
+
+
+# Iterator class
+class _MapIterator:
+    def __init__(self, entries):
+        self._entries = entries
+        self._curIndex = 0
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        if self._curIndex < len(self._entries):
+            entry = self._entries[self._curIndex]
+            self._curIndex += 1
+            return entry
+        else:
+            raise StopIteration
