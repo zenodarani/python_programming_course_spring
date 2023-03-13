@@ -1,7 +1,9 @@
 # Implementation of the Set ADT container using a Python list.
 class Set:
-    def __init__(self):
+    def __init__(self, *initElements):
         self._theElements = list()
+        for element in initElements:
+            self.add(element)
 
     # Returns the number of items in the set.
     def __len__(self):

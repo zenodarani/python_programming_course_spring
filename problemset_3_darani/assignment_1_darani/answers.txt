@@ -1,0 +1,2 @@
+Assignment 1.2
+- The '*' is used to define a function with a variable number of arguments.
