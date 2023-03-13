@@ -62,7 +62,7 @@ if __name__ == '__main__':
     # region Assignment 1.5
     setA = getRandomSet(5, (1, 10))
     setB = getRandomSet(2, (1, 10))
-    print('\nAssignment 1.4')
+    print('\nAssignment 1.5')
     print(f'Set A -> {setA}')
     print(f'Set B -> {setB}')
     print(f'A + B = {setA + setB} (union)')
