@@ -51,3 +51,10 @@ if __name__ == '__main__':
     print(f'Is set A proper subset of B? {setA.isProperSubsetOf(setB)}')
     print(f'Is set C proper subset of A? {setC.isProperSubsetOf(setA)}')
     # endregion
+
+    # region Assignment 1.4
+    setA = Set(4, 3, 1)
+    print('\nAssignment 1.4')
+    print('Set A:')
+    print(setA)
+    # endregion
