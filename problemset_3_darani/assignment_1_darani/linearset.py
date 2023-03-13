@@ -37,6 +37,10 @@ class Set:
                 return False
         return True
 
+    # Determines if this set is a proper subset of another given set (setB).
+    def isProperSubsetOf(self, setB):
+        return self.isSubsetOf(setB) and len(self) != len(setB)
+
     # Creates a new set from the union of this set and setB.
     def union(self, setB):
         newSet = Set()

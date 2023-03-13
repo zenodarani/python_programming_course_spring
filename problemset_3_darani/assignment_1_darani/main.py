@@ -38,3 +38,16 @@ if __name__ == '__main__':
     print(f'setC = Set(*initValues)')
     print(f'Set C -> {setC}')
     # endregion
+
+    # region Assignment 1.3
+    setA = Set(2, 0, 1)
+    setB = Set(2, 0, 1)
+    setC = Set(2, 0)
+    print('\nAssignment 1.3')
+    print(f'Set A -> {setA}')
+    print(f'Set B -> {setB}')
+    print(f'Set C -> {setC}')
+    print(f'Is set A subset of B? {setA.isSubsetOf(setB)}')
+    print(f'Is set A proper subset of B? {setA.isProperSubsetOf(setB)}')
+    print(f'Is set C proper subset of A? {setC.isProperSubsetOf(setA)}')
+    # endregion
