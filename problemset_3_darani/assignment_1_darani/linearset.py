@@ -23,7 +23,7 @@ class Set:
         assert element in self, "The element must be in the set."
         self._theElements.remove(element)
 
-        # Determines if two sets are equal.
+    # Determines if two sets are equal.
     def __eq__(self, setB):
         if len(self) != len(setB):
             return False
@@ -45,7 +45,7 @@ class Set:
     def union(self, setB):
         newSet = Set()
         newSet._theElements.extend(self._theElements)
-        for element in setB:
+        for element in setB._theElements:
             if element not in self:
                 newSet._theElements.append(element)
         return newSet
@@ -82,3 +82,19 @@ class Set:
         else:
             setStr += ' }'
         return setStr
+
+    # Does the union of this set and another given setB
+    def __add__(self, setB):
+        return self.union(setB)
+
+    # Does the intersection of this set and another given setB
+    def __mul__(self, setB):
+        return self.intersect(setB)
+
+    # Does the difference of this set with a given setB
+    def __sub__(self, setB):
+        return self.difference(setB)
+
+    # States if this set is a subset of a given setB
+    def __lt__(self, setB):
+        return self.isSubsetOf(setB)
