@@ -68,7 +68,16 @@ class SparseMatrix:
     # *** ASSIGNMENT 1.2 ****************************************************************************************
     # Return the value of element (i,j) of the matrix: x[i,j]
     def __getitem__(self, coordinates: Tuple[int, int]) -> float:
-        ... # TODO implement
+        if coordinates[0] >= self._rows or coordinates[0] < 0:
+            raise SparseMatrixException(
+                f"Index of row out of bound for index={coordinates[0]} and {self._rows} rows")
+        if coordinates[1] >= self._cols or coordinates[1] < 0:
+            raise SparseMatrixException(
+                f"Index of col out of bound for index={coordinates[1]} and {self._cols} cols")
+        for element in self._elements:
+            if element.row == coordinates[0] and element.col == coordinates[1]:
+                return element.value
+        return 0
 
     def add(self, o: SparseMatrix) -> SparseMatrix:
         ... # TODO implement
