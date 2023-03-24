@@ -92,7 +92,16 @@ class SparseMatrix:
         return result_matrix
 
     def subtract(self, o: SparseMatrix) -> SparseMatrix:
-        ... # TODO implement
+        if not (self._rows == o._rows and self._cols == o._cols):
+            raise SparseMatrixException("Invalid other matrix size")
+        result_matrix = SparseMatrix(self._rows, self._cols)
+        for element in self._elements:
+            result_matrix[element.row, element.col] = element.value - o[element.row, element.col]
+        # the other values that are zero in self but non-zero in o
+        for element in o._elements:
+            if self[element.row, element.col] == 0:
+                result_matrix[element.row, element.col] = -element.value
+        return result_matrix
 
     def multiply(self, o: SparseMatrix) -> SparseMatrix:
         ... # TODO implement
