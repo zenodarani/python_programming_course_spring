@@ -34,6 +34,9 @@ class SparseMatrix:
 
     # Set the value of element (i,j) to the value s: x[i,j] = s
     def __setitem__(self, position: Tuple[int, int], value: float):
+        # check indexes values
+        if position[0] >= self._rows or position[1] >= self._cols or position[0] < 0 or position[1] < 0:
+            raise SparseMatrixException("Invalid matrix indexes")
 
         # find the element
         index = self._find_position(position[0], position[1])
@@ -74,10 +77,11 @@ class SparseMatrix:
         if coordinates[1] >= self._cols or coordinates[1] < 0:
             raise SparseMatrixException(
                 f"Index of col out of bound for index={coordinates[1]} and {self._cols} cols")
-        for element in self._elements:
-            if element.row == coordinates[0] and element.col == coordinates[1]:
-                return element.value
-        return 0
+        index = self._find_position(coordinates[0], coordinates[1])
+        if index is None:
+            return 0
+        else:
+            return self._elements[index].value
 
     def add(self, o: SparseMatrix) -> SparseMatrix:
         if not (self._rows == o._rows and self._cols == o._cols):
@@ -104,7 +108,14 @@ class SparseMatrix:
         return result_matrix
 
     def multiply(self, o: SparseMatrix) -> SparseMatrix:
-        ... # TODO implement
+        if self._cols != o._rows:
+            raise SparseMatrixException("Invalid matrix size for multiplication")
+        result_matrix = SparseMatrix(self._rows, o._cols)
+        for r in range(result_matrix._rows):
+            for c in range(result_matrix._cols):
+                for i in range(self._cols):
+                    result_matrix[r, c] += self[r, i] * o[i, c]
+        return result_matrix
 
     def transpose(self) -> SparseMatrix:
         ... # TODO implement
