@@ -1,6 +1,8 @@
 from sparse_matrix import SparseMatrix
 
 if __name__ == "__main__":
+
+    # region Assignment 1.2
     sparse_matrix_A = SparseMatrix(3, 4)
     sparse_matrix_A[2, 3] = 5
     sparse_matrix_A[1, 2] = 12.3
@@ -49,4 +51,24 @@ if __name__ == "__main__":
     print("----------------")
     print(sparse_matrix_A)
     print(sparse_matrix_A.transpose())
+    # endregion
+    # endregion
+
+    # region Assignment 1.3
+    print('\nAssignment 1.3')
+    sparse_matrix_A = SparseMatrix(4, 4)
+    sparse_matrix_B = SparseMatrix(4, 4)
+    sparse_matrix_A[1, 0] = 2
+    sparse_matrix_A[0, 3] = 5
+    sparse_matrix_B[2, 2] = 7
+    sparse_matrix_B[0, 2] = 2
+    sparse_matrix_B[0, 3] = 4
+    print(sparse_matrix_A)
+    print(sparse_matrix_B)
+    print("Addition A + B")
+    print(sparse_matrix_A + sparse_matrix_B)
+    print("Multiplication A * B")
+    print(sparse_matrix_A * sparse_matrix_B)
+    print("Subtraction A - B")
+    print(sparse_matrix_A - sparse_matrix_B)
     # endregion

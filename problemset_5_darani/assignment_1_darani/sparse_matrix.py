@@ -125,13 +125,13 @@ class SparseMatrix:
 
     # *** ASSIGNMENT 1.3 ****************************************************************************************
     def __add__(self, o: SparseMatrix):
-        ... # TODO implement
+        return self.add(o)
 
     def __mul__(self, o: SparseMatrix):
-        ... # TODO implement
+        return self.multiply(o)
 
     def __sub__(self, o: SparseMatrix):
-        ... # TODO implement
+        return self.subtract(o)
 
 
 # Storage class for holding the non-zero matrix elements.
