@@ -19,7 +19,7 @@ if __name__ == "__main__":
     print(sparse_matrix_A.add(sparse_matrix_B))
     # endregion
 
-    # region test sub
+    # region Test sub
     print("\nTEST SUB")
     print("----------------")
     print(sparse_matrix_A)
@@ -27,7 +27,7 @@ if __name__ == "__main__":
     print(sparse_matrix_A.subtract(sparse_matrix_B))
     # endregion
 
-    # region test mult
+    # region Test mult
     print("\nTEST MULT")
     print("----------------")
     sparse_matrix_A = SparseMatrix(4, 3)
@@ -42,4 +42,11 @@ if __name__ == "__main__":
     print(sparse_matrix_A)
     print(sparse_matrix_B)
     print(sparse_matrix_A.multiply(sparse_matrix_B))
+    # endregion
+
+    # region Test transpose
+    print("\nTEST TRANSPOSE")
+    print("----------------")
+    print(sparse_matrix_A)
+    print(sparse_matrix_A.transpose())
     # endregion

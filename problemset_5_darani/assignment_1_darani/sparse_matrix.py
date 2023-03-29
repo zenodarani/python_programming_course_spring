@@ -118,7 +118,10 @@ class SparseMatrix:
         return result_matrix
 
     def transpose(self) -> SparseMatrix:
-        ... # TODO implement
+        result_matrix = SparseMatrix(self._cols, self._rows)
+        for element in self._elements:
+            result_matrix[element.col, element.row] = element.value
+        return result_matrix
 
     # *** ASSIGNMENT 1.3 ****************************************************************************************
     def __add__(self, o: SparseMatrix):
