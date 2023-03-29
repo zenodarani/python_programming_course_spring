@@ -1,0 +1,5 @@
+Assignment 2.2
+As shown in the graph plot_sum_performance.png the time of the Matrix seems following an exponential growth, instead
+the SparseMatrix seems more linear.
+We can conclude that, for large matrixes of size greater than 200, the SparseMatrix implementation is better than
+the Matrix one for computing the sum.

@@ -2,8 +2,9 @@ from random import randint
 from timeit import Timer
 from typing import Type, Union
 from matrix import Matrix
+import matplotlib.pyplot as plt
 
-from sparse_matrix import SparseMatrix
+from problemset_5_darani.assignment_1_darani.sparse_matrix import SparseMatrix
 
 
 def _generate_random_matrix(matrix_type: Union[Type[Matrix], Type[SparseMatrix]], size: int):
@@ -51,7 +52,7 @@ def run_experiment(matrix_type: Union[Type[Matrix], Type[SparseMatrix]], matrix_
 
 def main():
 
-    # matrix_sizes = [] # TODO add values that make sense to showcase the functionality of the sparse matrix
+    matrix_sizes = [x for x in range(10, 1000, 100)]
 
     # run the experiment for the Sparse Matrix
     sparse_matrix_experiments = [run_experiment(matrix_type=SparseMatrix, matrix_size=size, matrixes_number=10) for size in matrix_sizes]
@@ -61,7 +62,20 @@ def main():
     matrix_experiment = [run_experiment(matrix_type=Matrix, matrix_size=size, matrixes_number=10) for size in matrix_sizes]
     print(f"Execution time: {matrix_experiment} s")
 
-    # TODO use Matplotlib to show the results of the two functions
+    # plots for the result
+    plt.figure()
+    # sparse matrix
+    plt.plot(matrix_sizes, sparse_matrix_experiments, 'bo-', label='Sparse Matrix')
+    # matrix
+    plt.plot(matrix_sizes, matrix_experiment, 'ro-', label='Matrix')
+    plt.ylabel('Time in seconds')
+    plt.xlabel('Matrix size')
+    plt.legend()
+    plt.xticks(matrix_sizes, matrix_sizes)
+    plt.grid(visible=True)
+    plt.title("Sum of matrixes performance")
+    plt.savefig('plot_sum_performance.png')
+
 
 
 if __name__ == "__main__":
