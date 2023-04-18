@@ -98,15 +98,13 @@ class SinglyLinkedList:
         node_b = cur_node
         pre_node_b = pre_node
         # Swapping
-        next_a = node_a.next
-        node_a.next = node_b.next
-        node_b.next = next_a
-        # If 'a' is the head, 'b' becomes the new head
-        if pre_node_a is None:
-            self._head = node_b
-        else:
-            pre_node_a.next = node_b
-        pre_node_b.next = node_a
+        new_head = None
+        cur_node = None
+        if node_a == self._head:
+            new_head = node_b
+        for i in range(1,len(self)):
+
+
 
 
 class ListNode:
