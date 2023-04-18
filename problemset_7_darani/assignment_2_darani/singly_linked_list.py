@@ -48,19 +48,65 @@ class SinglyLinkedList:
         return cur_node.data
 
     def __len__(self):
-        ...  # TODO implement
+        if self._head is None:
+            return 0
+        length = 1
+        cur_node = self._head
+        while cur_node.next:
+            length += 1
+            cur_node = cur_node.next
+        return length
 
     def __iter__(self):
         return LinkedListIterator(self._head)
 
     def __getitem__(self, item):
-        ...  # TODO implement
+        if type(item) != int:
+            raise ValueError("index must be an integer")
+        if item < 0:
+            raise IndexError("index must be positive")
+        cur_node = self._head
+        for i in range(item):
+            if not cur_node.next:
+                raise IndexError("index out of bound")
+            cur_node = cur_node.next
+        return cur_node.data
 
     def clear(self):
-        ...  # TODO implement
+        self._head = None
 
     def swap_nodes(self, idx_a: int, idx_b: int):
-        ...  # TODO implement
+        if idx_a < 0 or idx_b < 0:
+            raise IndexError("index must be positive")
+        if idx_a == idx_b:
+            return
+        max_idx = max(idx_a, idx_b)
+        min_idx = min(idx_a, idx_b)
+        pre_node = None
+        cur_node = self._head
+        node_a = None
+        pre_node_a = None
+        # Find the two node to swap and their predecessors
+        for i in range(max_idx):
+            if i == min_idx:
+                node_a = cur_node
+                pre_node_a = pre_node
+            pre_node = cur_node
+            cur_node = cur_node.next
+            if cur_node is None:
+                raise IndexError("index out of bound")
+        node_b = cur_node
+        pre_node_b = pre_node
+        # Swapping
+        next_a = node_a.next
+        node_a.next = node_b.next
+        node_b.next = next_a
+        # If 'a' is the head, 'b' becomes the new head
+        if pre_node_a is None:
+            self._head = node_b
+        else:
+            pre_node_a.next = node_b
+        pre_node_b.next = node_a
 
 
 class ListNode:
