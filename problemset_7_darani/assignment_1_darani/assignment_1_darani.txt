@@ -1,0 +1,12 @@
+Exercise 1
+
+curNode = head.next.next
+newNode.next = curNode.next
+curNode.next = newNode
+
+
+Exercise 2
+
+curNode = head.next.next.next
+head.next.next.next = curNode.next
+curNode.next = None
