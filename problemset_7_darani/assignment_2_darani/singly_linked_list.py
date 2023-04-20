@@ -82,30 +82,25 @@ class SinglyLinkedList:
             return
         max_idx = max(idx_a, idx_b)
         min_idx = min(idx_a, idx_b)
-        pre_node = None
+        min_node = None
+        max_node = None
+        min_pre_node = None
+        max_pre_node = None
         cur_node = self._head
-        node_a = None
-        pre_node_a = None
-        # Find the two node to swap and their predecessors
         for i in range(max_idx):
-            if i == min_idx:
-                node_a = cur_node
-                pre_node_a = pre_node
-            pre_node = cur_node
+            if i == min_idx - 1 or (i == 0 and min_idx == 0):
+                min_pre_node = cur_node
+                min_node = cur_node.next
+            if i == max_idx - 1:
+                max_pre_node = cur_node
+                max_node = cur_node.next
             cur_node = cur_node.next
-            if cur_node is None:
-                raise IndexError("index out of bound")
-        node_b = cur_node
-        pre_node_b = pre_node
-        # Swapping
-        new_head = None
-        cur_node = None
-        if node_a == self._head:
-            new_head = node_b
-        for i in range(1,len(self)):
-
-
-
+        min_pre_node.next = max_node
+        max_pre_node.next = min_node
+        min_node_next = min_node.next
+        min_node.next = max_node.next
+        max_node.next = min_node_next
+            
 
 class ListNode:
     def __init__(self, data):
