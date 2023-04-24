@@ -88,18 +88,28 @@ class SinglyLinkedList:
         max_pre_node = None
         cur_node = self._head
         for i in range(max_idx):
-            if i == min_idx - 1 or (i == 0 and min_idx == 0):
+            if i == 0 and min_idx == 0:
+                min_node = cur_node
+            if i == min_idx - 1:
                 min_pre_node = cur_node
                 min_node = cur_node.next
             if i == max_idx - 1:
                 max_pre_node = cur_node
                 max_node = cur_node.next
             cur_node = cur_node.next
-        min_pre_node.next = max_node
+            # end of the list
+            if cur_node is None:
+                raise IndexError("index out of bound")
+
+        if min_pre_node is None:
+            self._head = max_node
+        else:
+            min_pre_node.next = max_node
         max_pre_node.next = min_node
         min_node_next = min_node.next
         min_node.next = max_node.next
         max_node.next = min_node_next
+
             
 
 class ListNode:
