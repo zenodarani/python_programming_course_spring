@@ -30,31 +30,28 @@ class Library:
             str_list += f"({str(book)})\n"
         return str_list
 
-    # Returns the first string in alphabetic order
-    def _compare_string(self, str_a, str_b):
+    # Given two books and a string attribute's name, compares which come first in alphabetic order. (Returns 'book_a'
+    # if the two attributes are equivalent)
+    def _compare_string(self, book_a, book_b, attribute):
+        str_a = getattr(book_a, attribute)
+        str_b = getattr(book_b, attribute)
         low_a = str.lower(str_a)
         low_b = str.lower(str_b)
-        if low_a < low_b:
-            return str_a
-        return str_b
+        if low_a <= low_b:
+            return book_a
+        return book_b
 
     # Given two books returns the first in alphabetic order by the title
     def _compare_by_title(self, book_a, book_b):
-        if self._compare_string(book_a.title, book_b.title) == book_a.title:
-            return book_a
-        return book_b
+        return self._compare_string(book_a, book_b, "title")
 
     # Given two books returns the first in alphabetic order by the author
     def _compare_by_author(self, book_a, book_b):
-        if self._compare_string(book_a.author, book_b.author) == book_a.author:
-            return book_a
-        return book_b
+        return self._compare_string(book_a, book_b, "author")
 
     # Given two books returns the first in alphabetic order by the genre
     def _compare_by_genre(self, book_a, book_b):
-        if self._compare_string(book_a.genre, book_b.genre) == book_a.genre:
-            return book_a
-        return book_b
+        return self._compare_string(book_a, book_b, "genre")
 
     # Given two books returns the one with the year that comes first in ascending order
     def _compare_by_year(self, book_a, book_b):
