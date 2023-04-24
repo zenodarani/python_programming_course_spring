@@ -32,9 +32,9 @@ class Library:
 
     # Returns the first string in alphabetic order
     def _compare_string(self, str_a, str_b):
-        str_a = str.lower(str_a)
-        str_b = str.lower(str_b)
-        if str_a < str_b:
+        low_a = str.lower(str_a)
+        low_b = str.lower(str_b)
+        if low_a < low_b:
             return str_a
         return str_b
 
@@ -51,10 +51,10 @@ class Library:
         return book_b
 
     # Given two books returns the first in alphabetic order by the genre
-    def _compare_by_genre(self, book_a, bool_b):
-        if self._compare_string(book_a.genre, bool_b.genre) == book_a.genre:
+    def _compare_by_genre(self, book_a, book_b):
+        if self._compare_string(book_a.genre, book_b.genre) == book_a.genre:
             return book_a
-        return bool_b
+        return book_b
 
     # Given two books returns the one with the year that comes first in ascending order
     def _compare_by_year(self, book_a, book_b):
@@ -65,8 +65,25 @@ class Library:
     def add_book(self, book):
         self.books.add_node(book)
 
-    def sort_books_by_title(self):
-        for i in range(len(self.books) - 1):
-            if self._compare_by_title(self.books[i], self.books[i + 1]).title == self.books[i + 1].title:
-                self.books.swap_nodes(i, i+1)
+    def _bubble_sort(self, _comparable_func):
+        swapped = True
+        while swapped:
+            swapped = False
+            for i in range(len(self.books) - 1):
+                book_a = self.books[i]
+                book_b = self.books[i + 1]
+                if _comparable_func(book_a, book_b) is book_b:
+                    self.books.swap_nodes(i, i + 1)
+                    swapped = True
 
+    def sort_books_by_title(self):
+        self._bubble_sort(self._compare_by_title)
+
+    def sort_books_by_author(self):
+        self._bubble_sort(self._compare_by_author)
+
+    def sort_books_by_year(self):
+        self._bubble_sort(self._compare_by_year)
+
+    def sort_books_by_genre(self):
+        self._bubble_sort(self._compare_by_genre)

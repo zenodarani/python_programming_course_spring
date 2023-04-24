@@ -110,7 +110,6 @@ class SinglyLinkedList:
         min_node.next = max_node.next
         max_node.next = min_node_next
 
-            
 
 class ListNode:
     def __init__(self, data):
