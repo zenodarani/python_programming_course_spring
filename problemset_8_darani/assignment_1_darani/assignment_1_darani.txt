@@ -1,0 +1,5 @@
+Exercise 1:
+TOP > [ 15, 12, 9, 6, 3, 0 ]
+
+Exercise 2:
+TOP > [ 15, 12, 9, 0 ]
