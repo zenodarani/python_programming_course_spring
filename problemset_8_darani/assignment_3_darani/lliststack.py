@@ -16,13 +16,13 @@ class Stack:
 
     # Returns the top item on the stack without removing it.
     def peek(self):
-        if not self.is_empty():
+        if self.is_empty():
             raise Exception("Cannot peek at an empty stack")
         return self._top.item
 
     # Removes and returns the top item on the stack.
     def pop(self):
-        if not self.is_empty():
+        if self.is_empty():
             raise Exception("Cannot pop from an empty stack")
 
         node = self._top
