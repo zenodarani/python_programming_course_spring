@@ -1,0 +1,20 @@
+Assignment 2.1 INFIX -> POSTFIX:
+a) AB*C/
+b) ((A-(B*C))+(D/E)) -> ((A(BC*)-)(DE/)+) -> ABC*-DE/+
+c) VW*X*Y+Z-
+d) AB/C*D-E+
+e) XY-WZ*V/+
+
+Assignment 2.2 INFIX -> PREFIX
+a) /*ABC
+b) +-A*BC/DE
+c) -+**VWXYZ
+d) +-*/ABCDE
+e) +-XY/*WZV
+
+Assignment 2.3 POSTFIX -> INFIX -> PREFIX
+a) A+(B-C)*D -> +A*-BCD
+b) (A+B)/(C-D)+E -> +/+AB-CDE
+c) A+B/(C+D*E) -> +A/B+C*DE
+d) X-(Y+Z)*(A-B) -> -X*+YZ-AB
+e) A+B-C+D*E -> +-+ABC*DE
