@@ -1,0 +1,16 @@
+Hospital Simulation (seed = 1, doctors = 3, minutes = 43800, between time = 4):
+
+Number of patient served =  9659
+Number of patient remaining in line = 1381
+The average wait time was 2738.79 minutes.
+Cure rate is: 4.75% (459)
+Death rate is: 95.22% (9197)
+
+
+Better Hospital Simulation (seed = 1, doctors = 3, minutes = 43800, between time = 4):
+
+Number of patient served =  9659
+Number of patient remaining in line = 1381
+The average wait time was 153.23 minutes.
+Cure rate is: 91.26% (8815)
+Death rate is: 8.71% (841)

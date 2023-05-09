@@ -25,15 +25,15 @@ class PriorityQueue:
         assert not self.is_empty(), "Cannot dequeue from an empty queue."
 
         # Find the entry with the highest priority.
-        highest = self._qList[0].priority
+        highest: _PriorityQEntry = self._qList[0]
         for i in range(len(self)):
             # See if the ith entry contains a higher priority (smaller integer).
-            if self._qList[i].priority < highest:
-                highest = self._qList[i].priority
+            if self._qList[i].priority < highest.priority:
+                highest = self._qList[i]
 
         # Remove the entry with the highest priority and return the item.
-        entry = self._qList.pop(highest)
-        return entry.item
+        self._qList.remove(highest)
+        return highest.item
 
 
 # Private storage class for associating queue items with their priority.

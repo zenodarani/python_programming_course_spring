@@ -1,11 +1,11 @@
 # Implementation of the main simulation class.
-from problemset_9_darani.assignment_2_darani.llistqueue import Queue
-from simpeople import Doctor, Patient
+from priorityqueue import PriorityQueue
+from problemset_9_darani.assignment_3_darani.simpeople import Doctor, Patient
 from random import random
 from random import seed
 
 
-class HospitalSimulation:
+class BetterHospitalSimulation:
     # Create a simulation object.
     def __init__( self, num_doctors, num_minutes, between_time):
         # Parameters supplied by the user.
@@ -13,7 +13,7 @@ class HospitalSimulation:
         self._num_minutes = num_minutes
         
         # Simulation components.
-        self._patients_queue = Queue()
+        self._patients_queue = PriorityQueue()
         self._doctors = []
         
         for i in range( num_doctors ) :
@@ -53,7 +53,7 @@ class HospitalSimulation:
         if random() < self._arrive_prob:
             self._num_patients += 1
             patient = Patient(self._num_patients, cur_time)
-            self._patients_queue.enqueue(patient)
+            self._patients_queue.enqueue(patient, patient.condition_severity())
             print("Patient #",self._num_patients, "arrived at time", cur_time)
             print("Queue length is", len(self._patients_queue))
 
@@ -95,6 +95,6 @@ class HospitalSimulation:
 
 
 if __name__ == "__main__":
-    sim = HospitalSimulation(3, 43800, 4)
+    sim = BetterHospitalSimulation(3, 43800, 4)
     sim.run(1)
     sim.print_results()
