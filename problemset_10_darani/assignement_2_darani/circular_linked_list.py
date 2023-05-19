@@ -5,6 +5,7 @@ class CircularLinkedList:
     def __init__(self):
         self._head: Optional[LinkedNode] = None
         self._tail: Optional[LinkedNode] = None
+        self._curr: Optional[LinkedNode] = None
         
     # -------------------------------------------------------------------------
     # assignment 1.1 basic functionality
@@ -30,8 +31,10 @@ class CircularLinkedList:
         if self._head is None:
             self._head = new_node
             self._tail = new_node
+            self._curr = new_node
         self._head = new_node
         self._tail.next = new_node
+        self.reset()
 
     def pop(self):
         self._tail.next = self._head.next
@@ -40,24 +43,20 @@ class CircularLinkedList:
         return item_pop.data
 
     def is_empty(self):
-        # TODO implement
-        ...
+        return self._head is None
 
     def current(self):
-        # TODO implement
-        ...
+        return self._curr.data
 
     def next(self):
-        # TODO implement
-        ...
+        self._curr = self._curr.next
+        return self._curr.data
 
     def peek_next(self):
-        # TODO implement
-        ...
+        return self._curr.next.data
 
     def reset(self):
-        # TODO implement
-        ...
+        self._curr = self._head
 
 
 class LinkedNode:
@@ -79,7 +78,7 @@ class CircularListIterator:
         self._first = True
 
     def __next__(self):
-        if self._head == self._curr and not self._first:
+        if self._head is None or self._head == self._curr and not self._first:
             raise StopIteration()
         value = self._curr.data
         self._curr = self._curr.next

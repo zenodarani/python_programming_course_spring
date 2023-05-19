@@ -10,8 +10,10 @@ def print_list(my_list):
 
 if __name__ == "__main__":
 
-    # region Test Assignment 2.1
+    # region Test Assignment 2.1 and 2.2
+    print("---- Test Assignment 2.1 - 2.2 ----")
     clist = CircularLinkedList()
+    print(f"Length of an empty list: {len(clist)}")
     # List [5, 4, 3, 2, 1]
     clist.push(1)
     clist.push(2)
@@ -29,4 +31,21 @@ if __name__ == "__main__":
     first_item = clist.pop()
     print_list(clist)
     print(f"First item removed from the list: {first_item}")
+    # endregion
+
+    # region Test Assignment 2.3
+    print("\n---- Test Assignment 2.3 ----")
+    clist2 = CircularLinkedList()
+    clist2.push(3)
+    clist2.push(7)
+    clist2.push(11)
+    clist2.push(1)
+
+    print_list(clist2)
+    print(f"Current item: {clist2.current()}")
+    print(f"Next: {clist2.next()}")
+    print(f"Peek Next: {clist2.peek_next()}")
+    print(f"Next: {clist2.next()}")
+    clist2.reset()
+    print(f"Reset and show current: {clist2.current()}")
     # endregion
