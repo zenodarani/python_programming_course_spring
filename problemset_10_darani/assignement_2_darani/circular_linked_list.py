@@ -20,8 +20,8 @@ class CircularLinkedList:
         return count
 
     def __contains__(self, item):
-        for node in self:
-            if node.data == item:
+        for data in self:
+            if data == item:
                 return True
         return False
 
@@ -33,9 +33,11 @@ class CircularLinkedList:
         self._head = new_node
         self._tail.next = new_node
 
-    def pop(self, item):
+    def pop(self):
         self._tail.next = self._head.next
+        item_pop = self._head
         self._head = self._head.next
+        return item_pop.data
 
     def is_empty(self):
         # TODO implement
@@ -81,6 +83,7 @@ class CircularListIterator:
             raise StopIteration()
         value = self._curr.data
         self._curr = self._curr.next
+        self._first = False
         return value
 
     def __iter__(self):
