@@ -40,6 +40,7 @@ class CircularLinkedList:
         self._tail.next = self._head.next
         item_pop = self._head
         self._head = self._head.next
+        self.reset()
         return item_pop.data
 
     def is_empty(self):
