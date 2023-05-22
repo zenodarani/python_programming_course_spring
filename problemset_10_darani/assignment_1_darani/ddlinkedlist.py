@@ -2,6 +2,7 @@ class DoublyLinkedList:
     def __init__(self):
         self._head = None
         self._tail = None
+        self._curr = None
 
     # -------------------------------------------------------------------------
     # assignment 1.1 basic functionality
@@ -39,6 +40,7 @@ class DoublyLinkedList:
         new_node.next = self._head
         self._head.prev = new_node
         self._head = new_node
+        self.seek_head()
 
     def add_last(self, value):
         new_node = DoublyLinkedNode(value)
@@ -49,6 +51,7 @@ class DoublyLinkedList:
         self._tail.next = new_node
         new_node.prev = self._tail
         self._tail = new_node
+        self.seek_head()
 
     def contains(self, value):
         for item in self:
@@ -59,6 +62,7 @@ class DoublyLinkedList:
     def clear(self):
         self._head = None
         self._tail = None
+        self._curr = None
 
     def peek_first(self):
         if self._head is None:
@@ -81,32 +85,29 @@ class DoublyLinkedList:
     # -------------------------------------------------------------------------
 
     def current(self):
-        # TODO implement
-        ...
+        return self._curr.data
 
     def next(self):
-        # TODO implement
-        ...
+        self._curr = self._curr.next
+        return self._curr.data
 
     def prev(self):
-        # TODO implement
-        ...
+        self._curr = self._curr.prev
+        return self._curr.data
 
     def peek_next(self):
-        # TODO implement
-        ...
+        return self._curr.next.data
 
     def peek_prev(self):
-        # TODO implement
-        ...
+        return self._curr.prev.data
 
     def seek_head(self):
-        # TODO implement
-        ...
+        self._curr = self._head
+        return self._curr.data
 
     def seek_tail(self):
-        # TODO implement
-        ...
+        self._curr = self._tail
+        return self._curr.data
 
 
 # -------------------------------------------------------------------------
