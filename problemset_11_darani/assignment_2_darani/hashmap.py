@@ -13,10 +13,11 @@ class HashMap:
     # Defines constants to represent the status of each table entry.
     UNUSED = None
     EMPTY = _MapEntry(None, None)
+    INIT_M = 7
 
     # Creates an empty map instance.
     def __init__(self):
-        self._table = Array(7)
+        self._table = Array(self.INIT_M)
         for i in range(len(self._table)):
             self._table[i] = HashMap.UNUSED
         self._count = 0
@@ -55,7 +56,12 @@ class HashMap:
 
     # Removes the entry associated with the key.
     def remove(self, key):
-        ... # TODO implement
+        slot = self._find_slot(key, False)
+        if slot is None:
+            raise IndexError("Key is not contained")
+        value = self._table[slot].value
+        self._table[slot] = self.UNUSED
+        return value
         
     # Finds the slot containing the key or where the key can be added.
     # forInsert indicates if the search is for an insertion, which locates
@@ -103,4 +109,21 @@ class HashMap:
 
     # Returns an iterator for traversing the keys in the map.
     def __iter__(self):
-        ... # TODO implement
+        return _HashMapIterator(self._table)
+
+
+class _HashMapIterator:
+
+    def __init__(self, table):
+        self._table = table
+        self._curr = 0
+
+    def __next__(self):
+        if self._curr == len(self._table):
+            raise StopIteration()
+        key = self._table[self._curr].key
+        self._curr += 1
+        return key
+
+    def __iter__(self):
+        return self
