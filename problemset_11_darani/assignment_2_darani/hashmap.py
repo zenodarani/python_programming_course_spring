@@ -58,7 +58,7 @@ class HashMap:
     def remove(self, key):
         slot = self._find_slot(key, False)
         if slot is None:
-            raise IndexError("Key is not contained")
+            raise IndexError("Key is not contained.")
         value = self._table[slot].value
         self._table[slot] = self.UNUSED
         return value
