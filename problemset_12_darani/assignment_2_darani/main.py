@@ -87,9 +87,63 @@ def merge_sort(students, ascending=True):
     return students_llist
 
 
+def quick_sort(sequence):
+    n = len(sequence)
+    _rec_quick_sort(sequence, 0, n-1)
+
+
+def _rec_quick_sort(sequence, first, last):
+    # Check the base case.
+    if first >= last :
+        return
+    else :
+        # Save the pivot value.
+        pivot = sequence[first]
+
+    # Partition the sequence and obtain the pivot position.
+    pos = partition_seq( sequence, first, last )
+
+    # Repeat the process on the two subsequences.
+    _rec_quick_sort( sequence, first, pos - 1 )
+    _rec_quick_sort( sequence, pos + 1, last )
+
+# Partitions the subsequence using the first key as the pivot.
+def partition_seq( sequence, first, last ):
+    # Save a copy of the pivot value.
+    pivot = sequence[first]
+
+    # Find the pivot position and move the elements around the pivot.
+    left = first + 1
+    right = last
+    while left <= right :
+        # Find the first key larger than the pivot.
+        while left <= right and sequence[left] <= pivot :
+            left += 1
+
+        # Find the last key in the sequence that is smaller than the pivot.
+        while right >= left and sequence[right] > pivot :
+            right -= 1
+
+    # Swap the two keys if we have not completed this partition.
+    if left < right :
+        tmp = sequence[left]
+        sequence[left] = sequence[right]
+        sequence[right] = tmp
+
+    # Put the pivot in the proper position.
+    if right != first :
+        sequence[first] = sequence[right]
+        sequence[right] = pivot
+
+    # Return the index position of the pivot value.
+    return right
+
+
 if __name__ == '__main__':
+    # Assignment 2.1
     students = parse_students("gpa.csv")
     sorted_students: SinglyLinkedList = merge_sort(students, ascending=False)
+    print("Merge sort: ")
     print("Top students:")
     print("____________________________________________")
     c = 1
@@ -99,3 +153,19 @@ if __name__ == '__main__':
         c += 1
         if c == 11:
             break
+    
+    # Assignment 2.2
+    list_a = [80, 7, 24, 16, 43, 91]
+    list_b = [1, 2, 3, 4, 5]
+    list_c = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
+    print("\nQuick sort: ")
+    print("List A: %s" %(list_a))
+    print("List B: %s" %(list_b))
+    print("List C: %s" %(list_c))
+    quick_sort(list_a)
+    quick_sort(list_b)
+    quick_sort(list_c)
+    print("List A sorted: %s" %(list_a))
+    print("List B sorted: %s" %(list_b))
+    print("List C sorted: %s" %(list_c))
+
