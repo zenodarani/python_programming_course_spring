@@ -82,8 +82,7 @@ def merge_sort(students, ascending=True):
         students_llist.add_node(st)
 
     # recursive merge sort with linked list
-    new_head = _recursive_merge_sort(students_llist._head, False)
-    students_llist._head = new_head
+    students_llist._head = _recursive_merge_sort(students_llist._head, False)
     return students_llist
 
 
